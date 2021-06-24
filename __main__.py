@@ -81,7 +81,7 @@ def auth_user_in_cloud():
         'password': password
     }
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    response = requests.post(url = 'https://question-creator-signup-update.herokuapp.com/userAuth', data=data)
+    response = requests.post(url = 'https://www.empowerr-aws-one.ga/creator/userAuth', data=data)
     json_response = response.json()
     if json_response['status'] =='approved':
         user_data = User.query.filter_by(hash_key=email).first()
@@ -117,7 +117,7 @@ def upload_question_bank():
         user_hash_key = request.form['userKey']
         blob = base64.b64encode(f.read())
         # sending post request and saving response as response object 
-        r = requests.post(url = "https://question-creator-signup-update.herokuapp.com/uploadQuestionBank",files={"blob":blob, "uname":user_hash_key,"doc_key": doc_hash_key})  
+        r = requests.post(url = "https://www.empowerr-aws-one.ga/creator/uploadQuestionBank",files={"blob":blob, "uname":user_hash_key,"doc_key": doc_hash_key})  
         # extracting response text  
         pastebin_url = r.text 
         return "The pastebin URL is:%s"%pastebin_url
